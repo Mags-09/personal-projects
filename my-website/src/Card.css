@@ -1,0 +1,102 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffe6e6; /* pastel red */
+  }
+  
+  .card {
+    width: 500px;
+    height: 666px;
+    perspective: 1000px;
+    position: relative;
+    transition: transform 1s;
+  }
+  
+  .card-front, .card-inside-left, .card-inside-right {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ffcc99; /* pastel orange */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 1s, opacity 1s;
+  }
+  
+  .card-front {
+    background-color: #ffcc99; /* pastel orange */
+    transform-origin: left; /* Set transform origin to left */
+  }
+  
+  .card-inside-left {
+    background-color: #ffe6e6; /* pastel red */
+    transform: rotateY(180deg);
+    right: 100%;
+  }
+  
+  .card-inside-right {
+    background-color: #ffe6e6; /* pastel red */
+    left: 50%;
+    opacity: 0;
+  }
+  
+  .card.open {
+    animation: shiftRight 1s forwards; /* Step 1: Shift the card to the right */
+  }
+  
+  .card.open .card-front {
+    animation: flipFront 1s 1s forwards; /* Step 2: Flip the front card face */
+  }
+  
+  .card.open .card-inside-left {
+    animation: revealLeft 1s 1s forwards; /* Step 3: Reveal the left inner card face */
+  }
+  
+  .card.open .card-inside-right {
+    animation: revealRight 1s 1s forwards; /* Step 3: Reveal the right inner card face */
+  }
+  
+  @keyframes shiftRight {
+    to {
+      transform: translateX(250px);
+    }
+  }
+  
+  @keyframes flipFront {
+    to {
+      transform: rotateY(-180deg) translateX(-500px); /* Rotate and translate to the left */
+    }
+  }
+  
+  @keyframes revealLeft {
+    to {
+      transform: rotateY(0);
+    }
+  }
+  
+  @keyframes revealRight {
+    to {
+      left: 0%;
+      opacity: 1;
+    }
+  }
+  
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff9999; /* pastel red */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ff6666; /* darker pastel red */
+  }
